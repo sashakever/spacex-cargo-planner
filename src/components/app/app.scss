@@ -1,0 +1,19 @@
+.app {
+    &__wrapper {
+        display: grid;
+        grid-template-columns: auto 20% minmax(320px, 800px) auto;
+        grid-template-rows: auto 1fr;
+        grid-template-areas: 
+        ". header header ."
+        ". list content .";
+    }    
+    &__header {
+        grid-area: header;
+    }
+    &__company-list {
+        grid-area: list;
+    }
+    &__page {
+        grid-area: content;
+    }
+}

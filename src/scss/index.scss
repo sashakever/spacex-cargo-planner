@@ -1,0 +1,20 @@
+$maincolor: #0C0B0B;
+$fontSize: 16;
+$minWidth: 320px;
+$maxWidth: 1440;
+$maxWidthContainer: 1270;
+$fontFamily:"Roboto";
+
+@import "null";
+
+
+body {
+  margin: 0;
+  font-family: 'Roboto';
+  font-size: 16px;
+  color: $maincolor;
+}
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
