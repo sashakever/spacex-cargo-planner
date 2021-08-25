@@ -9,7 +9,7 @@ const CompanyItem = ({ id, name }) => {
     
     return (
         <div className='company-item'>
-            <Link to={{ pathname: `/company/${name.toLowerCase().replace(/\s/g, '-')}`, state: { id: id } }}>{ name }</Link>
+            <Link to={{ pathname: `/company/${name.toLowerCase().replace(/\s/g, '-')}-${id}`, state: { id: id } }}>{ name }</Link>
         </div>
     )
 }

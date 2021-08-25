@@ -5,7 +5,8 @@ const updateCompanyList = (state, action) => {
     if (state === undefined) {
         return {
             companies: [],
-            currentCompany:null,
+            currentCompany: null,
+            searchText: '',
             loading: true,
             error: null
         };
@@ -16,7 +17,8 @@ const updateCompanyList = (state, action) => {
         case typesCompanies.fetch_courses_user_req:
         return {
             companies: [],
-            currentCompany:null,
+            currentCompany: null,
+            searchText: '',
             loading: true,
             error: null
         };
@@ -24,7 +26,8 @@ const updateCompanyList = (state, action) => {
         case typesCompanies.fetch_company_suc:
         return {
             companies: action.payload,
-            currentCompany:null,
+            currentCompany: null,
+            searchText: '',
             loading: false,
             error: null
         };
@@ -32,7 +35,8 @@ const updateCompanyList = (state, action) => {
         case typesCompanies.fetch_courses_user_fail:
         return {
             companies: [],
-            currentCompany:null,
+            currentCompany: null,
+            searchText: '',
             loading: false,
             error: action.payload
         };
@@ -45,6 +49,15 @@ const updateCompanyList = (state, action) => {
         return {
             companies: array,
             currentCompany: company ? company[0] : null,
+            searchText: state.companyList.searchText,
+            loading: false,
+            error: null
+        }
+        case typesCompanies.filter_company_by_name:
+        return {
+            companies: state.companyList.companies,
+            currentCompany: state.companyList.currentCompany,
+            searchText: action.payload,
             loading: false,
             error: null
         }

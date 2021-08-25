@@ -1,0 +1,11 @@
+.company-list {
+    padding: 10px;
+    overflow: auto;
+    height: 90vh;
+    
+    //scro
+    //background-color: rgb(236, 236, 236);
+    &__item {
+        padding-bottom: 15px;
+    }
+}

@@ -23,7 +23,7 @@ const companyError = (error) => {
 const fetchCompanies = (companyService, dispatch) => () => {
     dispatch(companyRequested());
     companyService.getCompanies()
-    .then((dataCourses) => dispatch(companyLoaded(dataCourses)))
+    .then((dataCompanies ) => dispatch(companyLoaded(dataCompanies)))
     .catch((err) => dispatch(companyError(err)));
 };
 
@@ -34,10 +34,26 @@ const getCompanyById = (id) => {
     }    
 }
 
+const filterCompanyByName = (name) => {    
+    return {
+        type: typesCompanies.filter_company_by_name,
+        payload: name,
+    }    
+}
+
+const fetchCompaniesFromGitHub = (companyService, dispatch) => () => {
+    dispatch(companyRequested());
+    companyService.getCompaniesFromGitHub()
+    .then((dataCompanies) => dispatch(companyLoaded(dataCompanies)))
+    .catch((err) => dispatch(companyError(err)));
+};
+
 export {    
     fetchCompanies,
     companyError,
     companyLoaded,
     companyRequested,
     getCompanyById,
+    filterCompanyByName,
+    fetchCompaniesFromGitHub,
 };

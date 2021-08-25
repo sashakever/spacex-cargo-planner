@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import CompanyList from '../company-list';
-import Header from '../Header';
+import Header from '../header';
 
 import { HomePage, CompanyPage } from '../pages';
 
@@ -20,7 +20,7 @@ const App = () => {
                 <Switch>
                     <Route
                         path='/company'
-                        component={CompanyPage}
+                        component={CompanyPage}                        
                     />
                     <Route
                         path='/'

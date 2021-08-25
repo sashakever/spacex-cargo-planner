@@ -1,0 +1,25 @@
+.company-page {
+    padding: 20px;
+    &__title {
+        margin-bottom: 10px;
+    }
+    &__email {
+        padding-bottom: 20px;
+    }
+    &__result {
+        p {
+            span {
+                font-weight: bold;
+                font-size: 20px;
+            }
+        }
+    }
+    &__boxes {
+        margin-top: 20px;
+        div {
+            margin-top: 10px;
+            padding: 5px;
+            border:2px solid black;
+        }
+    }
+}

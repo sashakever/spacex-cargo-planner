@@ -6,7 +6,7 @@ export default class CompanyService {
       "id": "d3d7218aeca",
       "name": "Tyson Foods",
       "email": "contact@tysonfoods.com",
-      "boxes": "0.3,0.7,3.6,0.9,4.4"
+      "boxes": "0.3,0.7,3.6,0.9,4.4,dfjh,dfgyj"
     },
     {
       "id": "50d4a8",
@@ -36,7 +36,7 @@ export default class CompanyService {
       "id": "8e86598a",
       "name": "TJX",
       "email": "contact@tjx.com",
-      "boxes": "0.1,1.3,5.1,2.4,8.4,1.8,7.9"
+      "boxes": null
     },
   ];
 
@@ -47,4 +47,29 @@ export default class CompanyService {
       }, 500);
     });
   }
+
+  /*getCompaniesFromGitHub = () => {
+    return new Promise((resolve, reject) => {
+      const res = fetch(`https://raw.githubusercontent.com/sashakever/spacex-cargo-planner/main/src/services/shipments.json`);
+      resolve(res.json());
+      reject(new Error(`Could not fetch data!`));
+    });
+  };*/
+
+  getCompaniesFromGitHub = async () => {    
+    const res = await fetch(`https://raw.githubusercontent.com/sashakever/spacex-cargo-planner/main/src/services/shipments.json`);
+
+    if (!res.ok) {
+      throw new Error(`Could not fetch data!`)
+    }
+    return await res.json();
+  };
+  
+  /*getLocalDate = () => {
+    let transaction = db.transaction([STORE], IDBTransaction.READ_WRITE); 
+    let objstore = transaction.objectStore(STORE);
+    for (i = 0; i < data.length; i++) { 
+        objstore.put(data[i]);
+    } 
+  }*/
 }
