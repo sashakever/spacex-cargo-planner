@@ -39,7 +39,7 @@ class CompanyListContainer extends Component {
 
         if (loading) return <Spinner />;
 
-        if (error) return <ErrorIndicator />;
+        if (error || !companies.length) return <ErrorIndicator error={ error }/>;
 
         let filteredCompanies;
         if (searchText !== "" && searchText !== null) {

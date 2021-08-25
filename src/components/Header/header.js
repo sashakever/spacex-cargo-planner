@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { filterCompanyByName } from '../../actions/';
 import withCompanyService from "../hoc";
-import { fetchCompaniesFromGitHub } from '../../actions';
+import { fetchCompaniesFromGitHub, saveCompanyList } from '../../actions';
 
 import './header.scss';
 
-const Header = ({ searchText, onFilterCompany, onFathCompanies }) => {
+const Header = ({ companies, onFilterCompany, onFethCompanies, onSaveCompanyList }) => {
     //debugger
     return (
         <div className='header'>
@@ -22,22 +22,25 @@ const Header = ({ searchText, onFilterCompany, onFathCompanies }) => {
             </div>
             <div className='header__actions'>
                 <button
-                    onClick={onFathCompanies}
+                    onClick={onFethCompanies}
                 >Load</button>
-                <button>Save</button>
+                <button
+                    onClick={() => onSaveCompanyList(companies)}
+                >Save</button>
             </div>
         </div>
     )
 }
 
-const mapStateToProps = ({ companyList: { searchText } }) => {
-    return {searchText}
+const mapStateToProps = ({ companyList: { companies } }) => {
+    return {companies}
 }
 
 const mapDispatchToProps = (dispatch, { companyService }) => {
     return {
         onFilterCompany: (text) => dispatch(filterCompanyByName(text)),
-        onFathCompanies: fetchCompaniesFromGitHub(companyService, dispatch,),
+        onFethCompanies: fetchCompaniesFromGitHub(companyService, dispatch,),
+        onSaveCompanyList: (list) => saveCompanyList(list, companyService, dispatch),
     }
 }
 

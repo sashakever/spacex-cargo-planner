@@ -6,10 +6,10 @@ const companyRequested = () => {
     }
 };
 
-const companyLoaded = (newCourse) => {
+const companyLoaded = (newCompany) => {
     return {
         type: typesCompanies.fetch_company_suc,//'FETCH_COURSES_SUCCESS',
-        payload: newCourse
+        payload: newCompany
     };
 };
 
@@ -20,11 +20,29 @@ const companyError = (error) => {
     };
 };
 
+const deleteCompany = (company) => {
+    return {
+        type: typesCompanies.delete_company,
+        payload: company,
+    }
+}
+
+const changeCompany = (company) => {
+    return {
+        type: typesCompanies.change_company,
+        payload: company,
+    }
+}
+
 const fetchCompanies = (companyService, dispatch) => () => {
     dispatch(companyRequested());
+    //try {
     companyService.getCompanies()
-    .then((dataCompanies ) => dispatch(companyLoaded(dataCompanies)))
+    .then((dataCompanies) => dispatch(companyLoaded(dataCompanies)))
     .catch((err) => dispatch(companyError(err)));
+    //} catch(err) {
+        //dispatch(companyError(err));
+    //}
 };
 
 const getCompanyById = (id) => {
@@ -48,6 +66,12 @@ const fetchCompaniesFromGitHub = (companyService, dispatch) => () => {
     .catch((err) => dispatch(companyError(err)));
 };
 
+const saveCompanyList = (companiesList, companyService, dispatch) => () =>  {
+    //dispatch(companyRequested());
+    //console.log(companiesList);
+    companyService.saveCompanyList(companiesList);
+}
+
 export {    
     fetchCompanies,
     companyError,
@@ -56,4 +80,7 @@ export {
     getCompanyById,
     filterCompanyByName,
     fetchCompaniesFromGitHub,
+    saveCompanyList,
+    deleteCompany,
+    changeCompany,
 };
