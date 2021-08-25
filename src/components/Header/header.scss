@@ -1,0 +1,52 @@
+.header {
+    display: grid;
+    grid-template-columns: 25% 1fr 25%;
+    gap: 10px;
+    padding: 20px 0;
+    background-color:rgb(233, 233, 233);
+    &__logo {
+        width: 100%;
+        font-weight: bold;
+        font-size: 30px;
+        text-align: center;
+    }
+    &__search {
+        width: 100%;
+        //height: 40px;
+        //background: #F5F5F7;
+        //border-radius: 8px;
+        display: flex;
+        align-items: center;
+        //margin-right: 20px;
+        input {
+            width: 100%;
+            height: 40px;
+            //border: none;
+            border:3px solid black;
+            outline: none;
+            //background: #F5F5F7;
+            border-radius: 20px;
+            padding: 0 20px;
+        }
+    }
+    &__actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        button {
+            width: 90px;
+            height: 40px;
+            border:3px solid black;
+            background-color:#fff;
+            box-shadow: 3px 3px 5px black;
+            &:hover{
+                background-color:rgb(243, 243, 243);
+            }
+            &:active {
+                box-shadow: none;
+                //outline: none;
+            }
+            //&:
+        }
+    }
+}
