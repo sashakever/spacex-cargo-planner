@@ -25,7 +25,7 @@ const App = () => {
                     <Route
                         path='/'
                         component={HomePage}
-                        exact
+                        
                     />
                 </Switch>
             </div>

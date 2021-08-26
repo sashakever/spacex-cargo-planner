@@ -8,6 +8,7 @@ const typesCompanies = {
     save_company_list: 'SAVE_COMPANY_LIST',
     delete_company: 'DELETE_COMPANY',
     change_company: 'CHANGE_COMPANY',
+    add_message: 'ADD_MESSAGE',
 };
 
 export {

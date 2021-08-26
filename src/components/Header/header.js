@@ -3,12 +3,26 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { filterCompanyByName } from '../../actions/';
 import withCompanyService from "../hoc";
-import { fetchCompaniesFromGitHub, saveCompanyList } from '../../actions';
+import { fetchCompaniesFromGitHub, addMessage } from '../../actions';
+import { useIndexedDBStore } from "use-indexeddb";
 
 import './header.scss';
 
-const Header = ({ companies, onFilterCompany, onFethCompanies, onSaveCompanyList }) => {
-    //debugger
+const Header = ({ companies, onFilterCompany, onFethCompanies, message, onMessage }) => {
+
+    const { deleteAll } = useIndexedDBStore("companyList");
+    const { add } = useIndexedDBStore("companyList");
+
+    const saveCompanies = () => {
+        console.log('delete')
+        deleteAll().then(console.log).catch(console.error);
+        console.log('delete')
+        for (let i = 0; i < companies.length; i++) {
+            add(companies[i]).then(console.log).catch(console.error);
+        }
+        onMessage('You are working with a locally saved list of companies.');
+    }
+    
     return (
         <div className='header'>
             <div className='header__logo'>
@@ -22,25 +36,30 @@ const Header = ({ companies, onFilterCompany, onFethCompanies, onSaveCompanyList
             </div>
             <div className='header__actions'>
                 <button
-                    onClick={onFethCompanies}
+                    onClick={() => {
+                        onFethCompanies();
+                        onMessage('You are working with a list of companies downloaded from the internet. To save the changes, click the save button.');
+                        }
+                    }
                 >Load</button>
                 <button
-                    onClick={() => onSaveCompanyList(companies)}
+                    onClick={saveCompanies}
                 >Save</button>
             </div>
+            <div className='header__message'>{ message }</div>
         </div>
     )
 }
 
-const mapStateToProps = ({ companyList: { companies } }) => {
-    return {companies}
+const mapStateToProps = ({ companyList: { companies, message } }) => {
+    return {companies, message}
 }
 
 const mapDispatchToProps = (dispatch, { companyService }) => {
     return {
         onFilterCompany: (text) => dispatch(filterCompanyByName(text)),
-        onFethCompanies: fetchCompaniesFromGitHub(companyService, dispatch,),
-        onSaveCompanyList: (list) => saveCompanyList(list, companyService, dispatch),
+        onFethCompanies: fetchCompaniesFromGitHub(companyService, dispatch),
+        onMessage: (m) => dispatch(addMessage(m)),
     }
 }
 

@@ -8,20 +8,22 @@ const updateCompanyList = (state, action) => {
             currentCompany: null,
             searchText: '',
             loading: true,
-            error: null
+            error: null,
+            message: 'You are working with a locally saved list of companies.',
         };
     }
 
 
     switch (action.type) {
         case typesCompanies.fetch_courses_user_req:
-        return {
-            companies: [],
-            currentCompany: null,
-            searchText: '',
-            loading: true,
-            error: null
-        };
+            return {
+                companies: [],
+                currentCompany: null,
+                searchText: '',
+                loading: true,
+                error: null,
+                message: state.companyList.message,
+            };
 
         case typesCompanies.fetch_company_suc:
             return {
@@ -29,7 +31,8 @@ const updateCompanyList = (state, action) => {
                 currentCompany: null,
                 searchText: '',
                 loading: false,
-                error: null
+                error: null,
+                message: state.companyList.message,
             };
 
         case typesCompanies.fetch_courses_user_fail:
@@ -38,7 +41,17 @@ const updateCompanyList = (state, action) => {
                 currentCompany: null,
                 searchText: '',
                 loading: false,
-                error: action.payload
+                error: action.payload,
+                message: state.companyList.message,
+            };
+        case typesCompanies.add_message:
+            return {
+                companies: state.companyList.companies,
+                currentCompany: state.companyList.currentCompany,
+                searchText: '',
+                loading: false,
+                error: null,
+                message: action.payload,
             };
         case typesCompanies.delete_company:
             const list = state.companyList.companies;
@@ -49,6 +62,7 @@ const updateCompanyList = (state, action) => {
                 searchText: '',
                 loading: false,
                 error: null,
+                message: state.companyList.message,
             }
         case typesCompanies.change_company:
             const listChange = state.companyList.companies;
@@ -59,18 +73,20 @@ const updateCompanyList = (state, action) => {
                 searchText: '',
                 loading: false,
                 error: null,
+                message: state.companyList.message,
             }
         case typesCompanies.get_company_by_id:
             const array = [ ...state.companyList.companies ];
-            const company = array.filter((company) => {
+            const companyId = array.filter((company) => {
                 return company.id === action.payload
             });
             return {
                 companies: array,
-                currentCompany: company ? company[0] : null,
+                currentCompany: companyId ? companyId[0] : null,
                 searchText: state.companyList.searchText,
                 loading: false,
-                error: null
+                error: null,
+                message: state.companyList.message,
             }
         case typesCompanies.filter_company_by_name:
             return {
@@ -78,7 +94,8 @@ const updateCompanyList = (state, action) => {
                 currentCompany: state.companyList.currentCompany,
                 searchText: action.payload,
                 loading: false,
-                error: null
+                error: null,
+                message: state.companyList.message,
             }
         default:
             return state.companyList;

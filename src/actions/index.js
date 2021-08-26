@@ -1,24 +1,31 @@
-import {typesCompanies} from './types-for-actions';
+import { typesCompanies } from './types-for-actions';
 
 const companyRequested = () => {
     return {
-        type: typesCompanies.fetch_company_req,//'FETCH_COURSES_REQUEST'
+        type: typesCompanies.fetch_company_req,
     }
 };
 
 const companyLoaded = (newCompany) => {
     return {
-        type: typesCompanies.fetch_company_suc,//'FETCH_COURSES_SUCCESS',
+        type: typesCompanies.fetch_company_suc,
         payload: newCompany
     };
 };
 
 const companyError = (error) => {
     return {
-        type: typesCompanies.fetch_courses_user_fail,//'FETCH_COURSES_FAILURE',
+        type: typesCompanies.fetch_courses_user_fail,
         payload: error
     };
 };
+
+const addMessage = (message) => {
+    return {
+        type: typesCompanies.add_message,
+        payload: message
+    };
+}
 
 const deleteCompany = (company) => {
     return {
@@ -33,17 +40,6 @@ const changeCompany = (company) => {
         payload: company,
     }
 }
-
-const fetchCompanies = (companyService, dispatch) => () => {
-    dispatch(companyRequested());
-    //try {
-    companyService.getCompanies()
-    .then((dataCompanies) => dispatch(companyLoaded(dataCompanies)))
-    .catch((err) => dispatch(companyError(err)));
-    //} catch(err) {
-        //dispatch(companyError(err));
-    //}
-};
 
 const getCompanyById = (id) => {
     return {
@@ -66,21 +62,14 @@ const fetchCompaniesFromGitHub = (companyService, dispatch) => () => {
     .catch((err) => dispatch(companyError(err)));
 };
 
-const saveCompanyList = (companiesList, companyService, dispatch) => () =>  {
-    //dispatch(companyRequested());
-    //console.log(companiesList);
-    companyService.saveCompanyList(companiesList);
-}
-
 export {    
-    fetchCompanies,
     companyError,
     companyLoaded,
     companyRequested,
     getCompanyById,
     filterCompanyByName,
-    fetchCompaniesFromGitHub,
-    saveCompanyList,
+    fetchCompaniesFromGitHub,    
     deleteCompany,
     changeCompany,
+    addMessage,
 };

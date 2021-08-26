@@ -1,7 +1,5 @@
 .app {    
     &__wrapper {
-        //height: 100vh;
-        //height: 300px;
         display: grid;
         grid-template-columns: auto 250px minmax(320px, 600px) auto;
         grid-template-rows: auto 1fr;

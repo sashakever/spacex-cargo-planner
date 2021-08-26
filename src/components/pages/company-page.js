@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getCompanyById, deleteCompany, changeCompany } from '../../actions'
@@ -9,13 +9,21 @@ import './company-page.scss'
 
 const CompanyPage = ({ currentCompany, getCompanyById, onDeleteCompany, onChangeCompany }) => {
     
-    let location = useLocation()//.pathname.split("/");
+    let location = useLocation()
     let history = useHistory();
-    let message = '';
+    let message = '';    
 
+    let id;
+    if (!location.state) {
+        id = location.pathname.split("/")[2];
+    } else {
+        id = location.state.id;
+    }
+    console.log(id);
+    console.log('company-page - currentCompany = ',currentCompany);
     useEffect(() => {
-        getCompanyById(location.state.id);
-    }, [location.state.id]);
+        getCompanyById(id);
+    }, [id,currentCompany]);    
 
     let count = 0;
     
@@ -54,9 +62,7 @@ const CompanyPage = ({ currentCompany, getCompanyById, onDeleteCompany, onChange
                 }
                 count++;
                 if (!isDel && tmpSum <= 10) break;
-                if (count > 20) break;                        
-                //console.log('boxes = ',boxes);
-                //console.log('count = ',count);
+                if (count > 20) break;             
             }                        
         }
 
@@ -77,7 +83,6 @@ const CompanyPage = ({ currentCompany, getCompanyById, onDeleteCompany, onChange
                 <div className='company-page__boxes'>
                     <p>Corgo boxes</p>
                     <input                    
-                        //onChange={(e) => onFilterCompany(e.target.value)}
                         value={currentCompany.boxes}
                         onChange={(e) => {
                             onChangeCompany({
