@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/spacex-cargo-planner/static/css/main.0c036d89.chunk.css",
+    "main.js": "/spacex-cargo-planner/static/js/main.4e14699f.chunk.js",
+    "main.js.map": "/spacex-cargo-planner/static/js/main.4e14699f.chunk.js.map",
+    "runtime-main.js": "/spacex-cargo-planner/static/js/runtime-main.ccf66907.js",
+    "runtime-main.js.map": "/spacex-cargo-planner/static/js/runtime-main.ccf66907.js.map",
+    "static/js/2.36634375.chunk.js": "/spacex-cargo-planner/static/js/2.36634375.chunk.js",
+    "static/js/2.36634375.chunk.js.map": "/spacex-cargo-planner/static/js/2.36634375.chunk.js.map",
+    "index.html": "/spacex-cargo-planner/index.html",
+    "static/css/main.0c036d89.chunk.css.map": "/spacex-cargo-planner/static/css/main.0c036d89.chunk.css.map",
+    "static/js/2.36634375.chunk.js.LICENSE.txt": "/spacex-cargo-planner/static/js/2.36634375.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ccf66907.js",
+    "static/js/2.36634375.chunk.js",
+    "static/css/main.0c036d89.chunk.css",
+    "static/js/main.4e14699f.chunk.js"
+  ]
+}
