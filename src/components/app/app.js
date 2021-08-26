@@ -19,11 +19,11 @@ const App = () => {
             <div className='app__page'>
                 <Switch>
                     <Route
-                        path='/company'
+                        path='/spacex-cargo-planner/company'
                         component={CompanyPage}                        
                     />
                     <Route
-                        path='/'
+                        path='/spacex-cargo-planner'
                         component={HomePage}
                         
                     />

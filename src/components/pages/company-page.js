@@ -19,8 +19,6 @@ const CompanyPage = ({ currentCompany, getCompanyById, onDeleteCompany, onChange
     } else {
         id = location.state.id;
     }
-    console.log(id);
-    console.log('company-page - currentCompany = ',currentCompany);
     useEffect(() => {
         getCompanyById(id);
     }, [id,currentCompany]);    
@@ -112,7 +110,7 @@ const CompanyPage = ({ currentCompany, getCompanyById, onDeleteCompany, onChange
                 <button
                     onClick={() => {
                         onDeleteCompany(currentCompany);
-                        history.push('/');
+                        history.push('/spacex-cargo-planner/');
                     }}>Delete Company</button>
                 {
                     message ? 

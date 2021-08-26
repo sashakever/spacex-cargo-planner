@@ -14,13 +14,12 @@ const Header = ({ companies, onFilterCompany, onFethCompanies, message, onMessag
     const { add } = useIndexedDBStore("companyList");
 
     const saveCompanies = () => {
-        console.log('delete')
-        deleteAll().then(console.log).catch(console.error);
-        console.log('delete')
+        deleteAll().then().catch(console.error);
         for (let i = 0; i < companies.length; i++) {
-            add(companies[i]).then(console.log).catch(console.error);
+            add(companies[i]).then().catch(console.error);
         }
         onMessage('You are working with a locally saved list of companies.');
+        window.alert('List saved');
     }
     
     return (

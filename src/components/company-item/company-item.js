@@ -7,7 +7,7 @@ const CompanyItem = ({ id, name }) => {
     
     return (
         <div className='company-item'>
-            <Link to={{ pathname: `/company/${id}`, state: { id: id } }}>{ name }</Link>
+            <Link to={{ pathname: `/spacex-cargo-planner/company/${id}`, state: { id: id } }}>{ name }</Link>
         </div>
     )
 }
